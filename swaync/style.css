@@ -1,0 +1,156 @@
+@define-color foreground #a9b1d6;
+@define-color background #1a1b26;
+
+/* Cores do Tema TokyoNight */
+@define-color black   #414868;
+@define-color red     #f7768e;
+@define-color green   #73daca;
+@define-color yellow  #e0af68;
+@define-color blue    #7aa2f7;
+@define-color magenta #bb9af7;
+@define-color cyan    #7dcfff;
+@define-color white   #c0caf5;
+
+/* Cores Funcionais (Aliases) */
+@define-color primary   @blue;
+@define-color alert     @red;
+@define-color warning   @yellow;
+@define-color success   @green;
+@define-color selection #283457;
+
+* {
+  font-family: "RobotoMono Nerd Font", "JetBrainsMono Nerd Font";
+}
+
+.control-center {
+  background: @background;
+  color: @foreground;
+  border-radius: 12px;
+  border: 1px solid @primary;
+  margin: 10px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.control-center-list-row {
+  background: transparent;
+  padding: 10px;
+}
+
+.control-center-list-row:focus,
+.control-center-list-row:hover {
+  background: @selection;
+}
+
+.notification-row {
+  outline: none;
+  background: transparent;
+  padding: 5px;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  background: @selection;
+}
+
+.notification {
+  border-radius: 12px;
+  margin: 6px 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 0;
+  background: @background;
+  border: 1px solid @primary;
+}
+
+.notification-content {
+  background: transparent;
+  color: @foreground;
+  padding: 10px;
+}
+
+.close-button {
+  background: @red;
+  color: @background;
+  text-shadow: none;
+  padding: 0;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-right: 5px;
+  box-shadow: none;
+  border: none;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: @black;
+  transition: all 0.15s ease-in-out;
+  border: none;
+}
+
+.notification-default-action,
+.notification-action {
+  padding: 4px;
+  margin: 4px;
+  box-shadow: none;
+  background: @background;
+  border: 1px solid @selection;
+  color: @foreground;
+  transition: all 0.15s ease-in-out;
+  border-radius: 8px;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  background: @selection;
+}
+
+.widget-title {
+  color: @magenta;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.5rem;
+}
+
+.widget-title > button {
+  font-size: 1rem;
+  color: @foreground;
+  text-shadow: none;
+  background: @selection;
+  box-shadow: none;
+  border-radius: 8px;
+  border: none;
+  padding: 5px 10px;
+}
+
+.widget-title > button:hover {
+  background: @black;
+}
+
+.widget-dnd {
+  background: @selection;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 8px;
+  color: @foreground;
+}
+
+.widget-dnd > switch {
+  font-size: 1rem;
+  border-radius: 8px;
+  background: @background;
+  border: 1px solid @primary;
+}
+
+.widget-dnd > switch slider {
+  background: @foreground;
+  border-radius: 8px;
+}
+
+.widget-dnd > switch:checked {
+  background: @primary;
+  border: 1px solid @primary;
+}

@@ -1,0 +1,41 @@
+# Walker 2.15.2 Config
+terminal = "kitty"
+selection_wrap = false
+
+[search]
+placeholder = "Buscar..."
+
+[providers]
+# Default providers searched on input
+default = ["desktopapplications", "calc", "runner", "websearch"]
+# Shown when input is empty
+empty = ["desktopapplications"]
+
+[[providers.prefixes]]
+prefix = "w "
+provider = "windows"
+
+[[providers.prefixes]]
+prefix = "cb "
+provider = "clipboard"
+
+[[providers.prefixes]]
+prefix = "@"
+provider = "websearch"
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[[providers.prefixes]]
+prefix = "/"
+provider = "finder"
+
+[[providers.prefixes]]
+prefix = ";"
+provider = "providerlist"
+
+[[plugins]]
+name = "yayfzf"
+src = "~/.config/walker/plugins/yayfzf.sh"
+prefix = "y "

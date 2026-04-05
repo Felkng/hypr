@@ -1,0 +1,109 @@
+@define-color foreground #a9b1d6;
+@define-color background #1a1b26;
+
+/* Cores do Tema TokyoNight */
+@define-color black   #414868;
+@define-color red     #f7768e;
+@define-color green   #73daca;
+@define-color yellow  #e0af68;
+@define-color blue    #7aa2f7;
+@define-color magenta #bb9af7;
+@define-color cyan    #7dcfff;
+@define-color white   #c0caf5;
+
+/* Cores Funcionais (Aliases) */
+@define-color primary   @blue;
+@define-color alert     @red;
+@define-color warning   @yellow;
+@define-color success   @green;
+@define-color selection #283457;
+@import url("tokyonight.css");
+
+* {
+    /* `ttf-roboto-mono-nerd` is required for icons and text */
+    font-family: "RobotoMono Nerd Font", "JetBrainsMono Nerd Font", "Font Awesome 5 Free";
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background-color: rgba(26, 27, 38, 0.85);
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    border-radius: 12px;
+    border: 2px solid rgba(122, 162, 247, 0.2);
+    margin: 8px 12px 0px 12px;
+}
+
+#workspaces {
+    background-color: transparent;
+    margin: 2px 4px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: @foreground;
+    background-color: @selection;
+    border-radius: 8px;
+    margin: 4px 2px;
+    transition: all 0.3s cubic-bezier(0.55, -0.04, 0.3, 1.44);
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background-color: @black;
+    color: @cyan;
+    border-bottom: 2px solid @cyan;
+}
+
+#workspaces button.active {
+    background-color: @primary;
+    color: @background;
+    min-width: 35px;
+    border-bottom: 2px solid @white;
+}
+
+#workspaces button.urgent {
+    background-color: @alert;
+    color: @background;
+}
+
+/* Individual modules styling for better look */
+#clock,
+#pulseaudio,
+#network,
+#custom-notification {
+    padding: 0 12px;
+    margin: 4px;
+    border-radius: 8px;
+    background-color: @selection;
+    border: 1px solid rgba(122, 162, 247, 0.1);
+}
+
+#clock {
+    color: @magenta;
+}
+
+#pulseaudio {
+    color: @yellow;
+}
+
+#network {
+    color: @green;
+}
+
+#custom-notification {
+    color: @red;
+}
+
+#tray {
+    padding: 0 10px;
+    margin: 4px;
+    border-radius: 8px;
+    background-color: @selection;
+}
