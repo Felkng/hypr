@@ -27,6 +27,7 @@ PACKAGES=(
     slurp
     libnotify
     neofetch
+    ttf-roboto-mono-nerd
 )
 
 # Function to check if a package is installed
@@ -82,6 +83,9 @@ link_config "$DOTFILES_DIR/walker" "$HOME/.config/walker"
 link_config "$DOTFILES_DIR/swaync" "$HOME/.config/swaync"
 link_config "$DOTFILES_DIR/waypaper" "$HOME/.config/waypaper"
 link_config "$DOTFILES_DIR/neofetch" "$HOME/.config/neofetch"
+link_config "$DOTFILES_DIR/gtk-3.0" "$HOME/.config/gtk-3.0"
+link_config "$DOTFILES_DIR/gtk-4.0" "$HOME/.config/gtk-4.0"
+link_config "$DOTFILES_DIR/fontconfig" "$HOME/.config/fontconfig"
 
 # Link scripts in bin
 mkdir -p "$HOME/.local/bin"
@@ -90,5 +94,9 @@ for script in "$DOTFILES_DIR/bin/"*; do
         link_config "$script" "$HOME/.local/bin/$(basename "$script")"
     fi
 done
+
+# Update font cache
+echo "Updating font cache..."
+fc-cache -fv
 
 echo "Installation complete!"

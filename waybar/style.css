@@ -89,6 +89,14 @@ window#waybar {
     /* Contorno mais visível */
 }
 
+window#waybar.empty #window,
+#window.empty {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
 #tray {
     padding: 0 10px;
 }
