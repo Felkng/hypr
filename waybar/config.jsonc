@@ -28,18 +28,12 @@
     "pulseaudio": {
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
+        "format-bluetooth-muted": "󰝟 {icon}",
+        "format-muted": "󰝟",
         "format-icons": {
             "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
-            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "phone-muted": "",
-            "portable": "",
-            "car": "",
             "default": [
+                "",
                 "",
                 ""
             ]
@@ -85,7 +79,7 @@
     "clock": {
         "interval": 60,
         "tooltip": true,
-        "format": "{:%H.%M}",
+        "format": "{:%H:%M}",
         "tooltip-format": "{:%d/%m/%Y}",
     }
 }
