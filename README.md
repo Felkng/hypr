@@ -45,10 +45,14 @@ Os scripts são instalados em `~/.local/bin/` e podem ser chamados diretamente:
 
 ## 🔄 Sincronização
 
-Para manter o repositório atualizado com as modificações que você fizer no computador, utilize o script de sincronização:
+Para manter o repositório atualizado com as modificações que você fizer no computador, utilize o comando **`dotsync`**:
 
 ```bash
-chmod +x sync.sh
-./sync.sh "Mensagem do commit"
+dotsync "Sua mensagem opcional"
 ```
-Ele irá adicionar todas as alterações, criar um commit e realizar o push para o seu repositório remoto.
+
+Este comando agora está instalado globalmente em `~/.local/bin/` (durante o `install.sh`) e pode ser executado de qualquer pasta. Ele irá:
+1. Detectar automaticamente a pasta `~/dotfiles`.
+2. Adicionar as alterações.
+3. Criar um commit.
+4. Realizar o push para o seu repositório remoto.

@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# Diretório deste repositório
-DOTFILES_DIR=$(cd "$(dirname "$0")" && pwd)
+# Encontra a raiz do repositório independentemente de onde o script está
+# Se o script está em ~/dotfiles/bin/dotsync, o root é o pai da pasta bin
+DOTFILES_DIR=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
 
 # Navega até o diretório do dotfiles
 cd "$DOTFILES_DIR"
 
 # Verifica se há alterações
 if [[ -z $(git status --porcelain) ]]; then
-    echo "Nenhuma modificação detectada."
+    echo "Nenhuma modificação detectada em $DOTFILES_DIR."
     exit 0
 fi
 
@@ -22,7 +23,7 @@ if [[ -z "$COMMIT_MSG" ]]; then
     COMMIT_MSG="Sync: $(date '+%Y-%m-%d %H:%M:%S')"
 fi
 
-# Adiciona todas as modificações (incluindo novos arquivos e binários no diretório bin/)
+# Adiciona todas as modificações
 echo "Adicionando modificações..."
 git add .
 
