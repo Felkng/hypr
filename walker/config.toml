@@ -1,6 +1,10 @@
 # Walker 2.15.2 Config
 terminal = "kitty"
-selection_wrap = false
+selection_wrap = true
+
+[keys]
+next = ["down", "tab", "super+tab"]
+prev = ["up", "shift_tab", "super+shift_tab"]
 
 [search]
 placeholder = "Buscar..."
