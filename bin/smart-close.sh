@@ -3,9 +3,11 @@
 # Pega a classe da janela ativa
 ACTIVE_CLASS=$(hyprctl activewindow -j | jq -r .class)
 
+# Debug (opcional, pode remover depois)
+# notify-send "Closing" "Class: $ACTIVE_CLASS"
+
 if [ "$ACTIVE_CLASS" == "Spotify" ] || [ "$ACTIVE_CLASS" == "spotify" ]; then
     # Se for Spotify, apenas move para um workspace especial "escondido"
-    # Isso mantém o processo vivo e tocando.
     hyprctl dispatch movetoworkspacesilent special:spotify
     notify-send "Spotify" "Minimizado para segundo plano" -i spotify
 else
