@@ -11,6 +11,7 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "tray",
         "pulseaudio",
         "network",
         "custom/notification",
@@ -24,6 +25,10 @@
     },
     "hyprland/window": {
         "separate-outputs": true
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
