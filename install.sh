@@ -86,6 +86,7 @@ link_config "$DOTFILES_DIR/neofetch" "$HOME/.config/neofetch"
 link_config "$DOTFILES_DIR/gtk-3.0" "$HOME/.config/gtk-3.0"
 link_config "$DOTFILES_DIR/gtk-4.0" "$HOME/.config/gtk-4.0"
 link_config "$DOTFILES_DIR/fontconfig" "$HOME/.config/fontconfig"
+link_config "$DOTFILES_DIR/themes/Tokyonight-Dark" "$HOME/.themes/Tokyonight-Dark"
 
 # Link scripts in bin
 mkdir -p "$HOME/.local/bin"
