@@ -97,3 +97,14 @@ window#waybar.empty #window,
     padding: 0;
     margin: 0;
 }
+tooltip {
+    background: @background;
+    border: 1px solid @blue;
+    border-radius: 8px;
+}
+
+tooltip label {
+    font-family: "RobotoMono Nerd Font", "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    color: @foreground;
+}
