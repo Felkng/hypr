@@ -1,9 +1,8 @@
 // -*- mode: jsonc -*-
 {
-    "layer": "top", // Waybar at top layer
-    "height": 30, // Waybar height (to be removed for auto height)
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "layer": "top",
+    "height": 30,
+    "spacing": 4,
     "modules-left": [
         "hyprland/workspaces"
     ],
@@ -15,8 +14,48 @@
         "pulseaudio",
         "network",
         "custom/notification",
-        "clock"
+        "clock",
+        "group/power"
     ],
+    "group/power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power",
+            "custom/lock",
+            "custom/logout",
+            "custom/reboot",
+            "custom/shutdown"
+        ]
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/lock": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "hyprlock"
+    },
+    "custom/logout": {
+        "format": "󰍃",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/reboot": {
+        "format": "󰜉",
+        "tooltip": false,
+        "on-click": "systemctl reboot"
+    },
+    "custom/shutdown": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "systemctl poweroff"
+    },
     "hyprland/workspaces": {
         "on-click": "activate",
         "persistent-workspaces": {
@@ -31,12 +70,11 @@
         "spacing": 10
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-bluetooth-muted": "󰝟 {icon}",
+        "format": "{volume}% <span>{icon}</span>",
+        "format-bluetooth": "{volume}% <span>{icon}</span>",
+        "format-bluetooth-muted": "󰝟 <span>{icon}</span>",
         "format-muted": "󰝟",
         "format-icons": {
-            "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
             "default": [
                 "",
                 "",
@@ -50,13 +88,12 @@
         ]
     },
     "network": {
-        // "interface": "wlp2s0",
-        "format": "{ifname}",
+        "format": "󰈀 {ifname}",
         "format-ethernet": "󰈀 {ifname}",
         "format-wifi": " {essid}",
         "format-disconnected": "󰈂 Desconectado",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "󰈀 {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50

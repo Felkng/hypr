@@ -55,7 +55,12 @@ window#waybar {
 #pulseaudio,
 #network,
 #custom-notification,
-#tray {
+#tray,
+#custom-power,
+#custom-lock,
+#custom-logout,
+#custom-reboot,
+#custom-shutdown {
     padding: 0 12px;
     margin: 4px;
     border-radius: 8px;
@@ -63,8 +68,34 @@ window#waybar {
     border: 1px solid rgba(122, 162, 247, 0.1);
 }
 
-#clock {
+#custom-power {
+    color: @red;
+}
+
+#custom-lock {
+    color: @yellow;
+}
+
+#custom-logout {
     color: @magenta;
+}
+
+#custom-reboot {
+    color: @green;
+}
+
+#custom-shutdown {
+    color: @red;
+}
+
+#custom-notification {
+    color: @red;
+}
+
+#custom-notification span,
+#pulseaudio span {
+    /* Precise padding to center Nerd Font icons in GTK CSS */
+    padding-bottom: 2px;
 }
 
 #pulseaudio {
@@ -75,8 +106,8 @@ window#waybar {
     color: @green;
 }
 
-#custom-notification {
-    color: @red;
+#clock {
+    color: @magenta;
 }
 
 #window {
