@@ -14,6 +14,7 @@ PACKAGES=(
     swaync
     waypaper
     swww
+    hyprlock
     nautilus
     brightnessctl
     playerctl

@@ -12,6 +12,7 @@ O script de instalação configura os seguintes componentes:
 - **Lançador de Apps:** [Walker](https://github.com/abenz1267/walker)
 - **Centro de Notificações:** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
 - **Gerenciador de Wallpaper:** [Waypaper](https://github.com/anandbaraik/waypaper) (com `swww`)
+- **Bloqueio de Tela:** [Hyprlock](https://wiki.hypr.land/Hypr-ecosystem/hyprlock/)
 - **Outros utilitários:** `neofetch`, `fzf`, `grim`, `slurp`, `brightnessctl`, `playerctl`, `cliphist`, etc.
 
 ## 📦 Instalação
