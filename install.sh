@@ -29,6 +29,7 @@ PACKAGES=(
     libnotify
     neofetch
     ttf-roboto-mono-nerd
+    sddm-theme-tokyo-night-git
 )
 
 # Function to check if a package is installed
@@ -100,5 +101,20 @@ done
 # Update font cache
 echo "Updating font cache..."
 fc-cache -fv
+
+# Configure SDDM
+echo "Configuring SDDM theme..."
+if [ ! -f /etc/sddm.conf ]; then
+    sddm --example-config | sudo tee /etc/sddm.conf > /dev/null
+fi
+sudo sed -i 's/^Current=.*/Current=tokyo-night-sddm/' /etc/sddm.conf
+
+# Set SDDM wallpaper if it exists
+WALLPAPER="$HOME/Downloads/wallhaven-3qwx1v_1920x1080.png"
+if [ -f "$WALLPAPER" ]; then
+    echo "Setting SDDM wallpaper..."
+    sudo cp "$WALLPAPER" /usr/share/sddm/themes/tokyo-night-sddm/Backgrounds/current_wallpaper.png
+    sudo sed -i 's|^Background=.*|Background="Backgrounds/current_wallpaper.png"|' /usr/share/sddm/themes/tokyo-night-sddm/theme.conf
+fi
 
 echo "Installation complete!"

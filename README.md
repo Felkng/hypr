@@ -13,6 +13,7 @@ O script de instalação configura os seguintes componentes:
 - **Centro de Notificações:** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
 - **Gerenciador de Wallpaper:** [Waypaper](https://github.com/anandbaraik/waypaper) (com `swww`)
 - **Bloqueio de Tela:** [Hyprlock](https://wiki.hypr.land/Hypr-ecosystem/hyprlock/)
+- **Login Manager:** [SDDM](https://github.com/sddm/sddm) (com tema [Tokyo Night](https://github.com/siddrs/tokyo-night-sddm))
 - **Outros utilitários:** `neofetch`, `fzf`, `grim`, `slurp`, `brightnessctl`, `playerctl`, `cliphist`, etc.
 
 ## 📦 Instalação
