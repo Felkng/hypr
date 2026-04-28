@@ -4,7 +4,7 @@ selection_wrap = true
 
 [keys]
 next = ["down", "tab", "super+tab"]
-prev = ["up", "shift_tab", "super+shift_tab"]
+prev = ["up", "shift_tab", "super+shift_tab", "super+shift_iso_left_tab"]
 
 [search]
 placeholder = "Buscar..."
