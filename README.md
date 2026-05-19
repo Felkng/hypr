@@ -44,6 +44,7 @@ Os scripts são instalados em `~/.local/bin/` e podem ser chamados diretamente:
 
 - **`open-yayfzf.sh`**: Abre o `yayfzf` em uma janela flutuante do Kitty para busca rápida de pacotes.
 - **`wallpaper-picker.sh`**: Interface via `walker --dmenu` para selecionar e aplicar wallpapers da sua pasta `~/Downloads`.
+- **`droidcam-setup`**: Configura automaticamente o `v4l2loopback` com 2 dispositivos virtuais (DroidCam e OBS Virtual Camera) para garantir compatibilidade com Google Chrome e Chromium.
 
 ## 🔄 Sincronização
 

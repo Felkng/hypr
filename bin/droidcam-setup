@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "--- Configurando DroidCam para Chrome e OBS ---"
+# Configuração para 2 dispositivos virtuais com labels para compatibilidade total com Chrome/Chromium
+echo 'options v4l2loopback devices=2 exclusive_caps=1,1 card_label="DroidCam","OBS Virtual Camera"' | sudo tee /etc/modprobe.d/droidcam.conf >/dev/null
+echo "v4l2loopback" | sudo tee /etc/modules-load.d/droidcam.conf >/dev/null
+
+# Garante que o módulo seja recarregado com as novas opções
+sudo modprobe -r v4l2loopback 2>/dev/null
+sudo modprobe v4l2loopback
+
+echo "--- Concluído! Dispositivos de vídeo detectados: ---"
+ls /dev/video*
