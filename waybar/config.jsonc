@@ -27,6 +27,7 @@
         "modules": [
             "custom/power",
             "custom/lock",
+            "custom/suspend",
             "custom/logout",
             "custom/reboot",
             "custom/shutdown"
@@ -40,6 +41,11 @@
         "format": "",
         "tooltip": false,
         "on-click": "hyprlock"
+    },
+    "custom/suspend": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "systemctl suspend"
     },
     "custom/logout": {
         "format": "󰍃",

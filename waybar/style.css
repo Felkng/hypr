@@ -58,6 +58,7 @@ window#waybar {
 #tray,
 #custom-power,
 #custom-lock,
+#custom-suspend,
 #custom-logout,
 #custom-reboot,
 #custom-shutdown {
@@ -74,6 +75,10 @@ window#waybar {
 
 #custom-lock {
     color: @yellow;
+}
+
+#custom-suspend {
+    color: @blue;
 }
 
 #custom-logout {
