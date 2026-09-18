@@ -45,7 +45,7 @@
     "custom/suspend": {
         "format": "",
         "tooltip": false,
-        "on-click": "systemctl suspend"
+        "on-click": "hyprlock & sleep 0.5 && systemctl suspend"
     },
     "custom/logout": {
         "format": "󰍃",
