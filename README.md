@@ -22,40 +22,49 @@ O script de instalação configura os seguintes componentes:
 - Sistema operacional **Arch Linux**.
 - Conexão com a internet para baixar pacotes via AUR.
 
-### Como usar
+### Como usar em uma máquina nova
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/dotfiles.git ~/dotfiles
+   git clone https://github.com/Felkng/hypr.git ~/dotfiles
    cd ~/dotfiles
    ```
-2. Dê permissão de execução ao script:
+2. Dê permissão de execução aos scripts:
    ```bash
-   chmod +x install.sh
+   chmod +x install.sh bin/*
    ```
 3. Execute a instalação:
    ```bash
    ./install.sh
+   # ou: ./bin/dotsync install
    ```
-   *O script instalará o `yay` se necessário, os pacotes listados e criará links simbólicos em `~/.config/`.*
+   *O script instalará o `yay` se necessário, todos os pacotes e utilitários necessários para o Hyprland, criará links simbólicos em `~/.config/` e configurará o SDDM e wallpapers automaticamente.*
 
 ## 🛠️ Scripts Personalizados (`bin/`)
 
 Os scripts são instalados em `~/.local/bin/` e podem ser chamados diretamente:
 
+- **`dotsync`**: Gerenciador de sincronização dos dotfiles (pull, push e install).
 - **`open-yayfzf.sh`**: Abre o `yayfzf` em uma janela flutuante do Kitty para busca rápida de pacotes.
-- **`wallpaper-picker.sh`**: Interface via `walker --dmenu` para selecionar e aplicar wallpapers da sua pasta `~/Downloads`.
+- **`wallpaper-picker.sh`**: Interface via `walker --dmenu` para selecionar e aplicar wallpapers da sua pasta `~/Downloads` ou `~/Pictures/Wallpapers`.
 - **`droidcam-setup`**: Configura automaticamente o `v4l2loopback` com 2 dispositivos virtuais (DroidCam e OBS Virtual Camera) para garantir compatibilidade com Google Chrome e Chromium.
 
-## 🔄 Sincronização
+## 🔄 Sincronização e Manutenção (`dotsync`)
 
-Para manter o repositório atualizado com as modificações que você fizer no computador, utilize o comando **`dotsync`**:
+Para manter o repositório atualizado ou sincronizar entre máquinas, utilize o comando **`dotsync`**:
 
-```bash
-dotsync "Sua mensagem opcional"
-```
-
-Este comando agora está instalado globalmente em `~/.local/bin/` (durante o `install.sh`) e pode ser executado de qualquer pasta. Ele irá:
-1. Detectar automaticamente a pasta `~/dotfiles`.
-2. Adicionar as alterações.
-3. Criar um commit.
-4. Realizar o push para o seu repositório remoto.
+- **Subir modificações:**
+  ```bash
+  dotsync "Sua mensagem opcional"
+  ```
+- **Baixar modificações e atualizar links:**
+  ```bash
+  dotsync pull
+  ```
+- **Reinstalar pacotes e restaurar links:**
+  ```bash
+  dotsync install
+  ```
+- **Verificar status:**
+  ```bash
+  dotsync status
+  ```

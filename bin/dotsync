@@ -1,25 +1,69 @@
 #!/bin/bash
 
 # Encontra a raiz do repositório independentemente de onde o script está
-# Se o script está em ~/dotfiles/bin/dotsync, o root é o pai da pasta bin
 DOTFILES_DIR=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
+cd "$DOTFILES_DIR" || exit 1
 
-# Navega até o diretório do dotfiles
-cd "$DOTFILES_DIR"
+ACTION="$1"
+
+case "$ACTION" in
+    install)
+        echo "Executando instalação completa dos dotfiles..."
+        "$DOTFILES_DIR/install.sh"
+        exit $?
+        ;;
+    pull|update)
+        echo "Buscando atualizações no repositório remoto..."
+        git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)
+        echo "Atualizando links simbólicos..."
+        bash -c "source <(sed -n '/link_config()/,/echo \"Installation complete!\"/p' '$DOTFILES_DIR/install.sh')" 2>/dev/null || true
+        echo "Dotfiles atualizados com sucesso!"
+        exit 0
+        ;;
+    status)
+        git status
+        exit 0
+        ;;
+    help|-h|--help)
+        echo "Uso: dotsync [opção | 'mensagem de commit']"
+        echo ""
+        echo "Comandos disponíveis:"
+        echo "  dotsync                   Sincroniza alterações locais (commit e push)"
+        echo "  dotsync 'mensagem'        Sincroniza alterações com uma mensagem personalizada"
+        echo "  dotsync pull              Baixa atualizações remotas e atualiza links"
+        echo "  dotsync install           Executa o script de instalação (pacotes e links)"
+        echo "  dotsync status            Exibe o status atual do git no repositório"
+        exit 0
+        ;;
+esac
+
+# Se houver comando push explícito, o argumento 2 é a mensagem
+if [[ "$ACTION" == "push" ]]; then
+    shift
+    COMMIT_MSG="$*"
+else
+    COMMIT_MSG="$*"
+fi
 
 # Verifica se há alterações
 if [[ -z $(git status --porcelain) ]]; then
-    echo "Nenhuma modificação detectada em $DOTFILES_DIR."
+    echo "Nenhuma modificação local detectada em $DOTFILES_DIR."
+    echo "Verificando se há atualizações remotas..."
+    git fetch origin $(git rev-parse --abbrev-ref HEAD) --quiet
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse @{u} 2>/dev/null || echo "$LOCAL")
+    if [ "$LOCAL" != "$REMOTE" ]; then
+        echo "Existem atualizações remotas disponíveis. Use 'dotsync pull' para atualizar."
+    else
+        echo "Repositório está em dia com a nuvem."
+    fi
     exit 0
 fi
 
 # Exibe o status atual para revisão
 git status
 
-# Mensagem de commit
-COMMIT_MSG="$1"
 if [[ -z "$COMMIT_MSG" ]]; then
-    # Se não for fornecida uma mensagem, usa a data atual
     COMMIT_MSG="Sync: $(date '+%Y-%m-%d %H:%M:%S')"
 fi
 

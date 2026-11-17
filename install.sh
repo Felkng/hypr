@@ -8,13 +8,14 @@ echo "Starting installation..."
 # Packages to install
 PACKAGES=(
     hyprland
+    hyprpaper
+    hyprlock
     kitty
     waybar
     walker-bin
     swaync
     waypaper
     swww
-    hyprlock
     nautilus
     brightnessctl
     playerctl
@@ -24,6 +25,10 @@ PACKAGES=(
     pavucontrol
     hyprland-guiutils
     fzf
+    yayfzf
+    jq
+    zenity
+    psmisc
     grim
     slurp
     libnotify
@@ -32,6 +37,10 @@ PACKAGES=(
     otf-font-awesome
     ttf-roboto-mono-nerd
     sddm-theme-tokyo-night-git
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
+    elephant-bin
+    spotify-tray-wayland-bin
 )
 
 # Function to check if a package is installed
@@ -91,7 +100,9 @@ link_config "$DOTFILES_DIR/gtk-3.0" "$HOME/.config/gtk-3.0"
 link_config "$DOTFILES_DIR/gtk-4.0" "$HOME/.config/gtk-4.0"
 link_config "$DOTFILES_DIR/fontconfig" "$HOME/.config/fontconfig"
 link_config "$DOTFILES_DIR/swappy" "$HOME/.config/swappy"
+link_config "$DOTFILES_DIR/xdg-desktop-portal" "$HOME/.config/xdg-desktop-portal"
 link_config "$DOTFILES_DIR/themes/Tokyonight-Dark" "$HOME/.themes/Tokyonight-Dark"
+link_config "$DOTFILES_DIR/hypr/wallpapers" "$HOME/Pictures/Wallpapers"
 
 # Link scripts in bin
 mkdir -p "$HOME/.local/bin"
@@ -112,10 +123,11 @@ if [ ! -f /etc/sddm.conf ]; then
 fi
 sudo sed -i 's/^Current=.*/Current=tokyo-night-sddm/' /etc/sddm.conf
 
-# Set SDDM wallpaper if it exists
-WALLPAPER="$HOME/Downloads/wallhaven-3qwx1v_1920x1080.png"
+# Set SDDM wallpaper
+WALLPAPER="$DOTFILES_DIR/hypr/wallpapers/default.png"
 if [ -f "$WALLPAPER" ]; then
     echo "Setting SDDM wallpaper..."
+    sudo mkdir -p /usr/share/sddm/themes/tokyo-night-sddm/Backgrounds
     sudo cp "$WALLPAPER" /usr/share/sddm/themes/tokyo-night-sddm/Backgrounds/current_wallpaper.png
     sudo sed -i 's|^Background=.*|Background="Backgrounds/current_wallpaper.png"|' /usr/share/sddm/themes/tokyo-night-sddm/theme.conf
 fi
