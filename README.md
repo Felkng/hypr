@@ -8,6 +8,7 @@ O script de instalação configura os seguintes componentes:
 
 - **Gerenciador de Janelas:** [Hyprland](https://hyprland.org/)
 - **Emulador de Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
+- **Shell e Prompt:** [Zsh](https://www.zsh.org/) + [Oh My Zsh](https://ohmyz.sh/) + [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - **Barra de Status:** [Waybar](https://github.com/Alexays/Waybar)
 - **Lançador de Apps:** [Walker](https://github.com/abenz1267/walker)
 - **Centro de Notificações:** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)

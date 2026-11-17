@@ -41,6 +41,7 @@ PACKAGES=(
     xdg-desktop-portal-gtk
     elephant-all-bin
     spotify-tray-wayland-bin
+    zsh
 )
 
 # Function to check if a package is installed
@@ -103,6 +104,8 @@ link_config "$DOTFILES_DIR/swappy" "$HOME/.config/swappy"
 link_config "$DOTFILES_DIR/xdg-desktop-portal" "$HOME/.config/xdg-desktop-portal"
 link_config "$DOTFILES_DIR/themes/Tokyonight-Dark" "$HOME/.themes/Tokyonight-Dark"
 link_config "$DOTFILES_DIR/hypr/wallpapers" "$HOME/Pictures/Wallpapers"
+link_config "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
+link_config "$DOTFILES_DIR/zsh/p10k.zsh" "$HOME/.p10k.zsh"
 
 # Link scripts in bin
 mkdir -p "$HOME/.local/bin"
@@ -130,6 +133,23 @@ if [ -f "$WALLPAPER" ]; then
     sudo mkdir -p /usr/share/sddm/themes/tokyo-night-sddm/Backgrounds
     sudo cp "$WALLPAPER" /usr/share/sddm/themes/tokyo-night-sddm/Backgrounds/current_wallpaper.png
     sudo sed -i 's|^Background=.*|Background="Backgrounds/current_wallpaper.png"|' /usr/share/sddm/themes/tokyo-night-sddm/theme.conf
+fi
+
+# Setup Oh My Zsh and Powerlevel10k
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing Oh My Zsh..."
+    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+fi
+
+if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+    echo "Installing Powerlevel10k theme..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+fi
+
+# Set default shell to zsh if available
+if command -v zsh >/dev/null 2>&1 && [ "$SHELL" != "$(which zsh)" ]; then
+    echo "Setting zsh as default shell..."
+    chsh -s "$(which zsh)" "$USER" 2>/dev/null || true
 fi
 
 echo "Installation complete!"
