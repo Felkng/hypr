@@ -1,12 +1,33 @@
 #!/bin/bash
-# Localização dos wallpapers (conforme seu waypaper config.ini)
-WP_DIR="$HOME/Downloads"
+# Localização dos wallpapers (prioriza ~/Pictures/Wallpapers e inclui ~/Downloads)
+WP_DIRS=("$HOME/Pictures/Wallpapers" "$HOME/Downloads")
 
-# Listar imagens e selecionar usando o Walker no modo dmenu
-SELECTED=$(ls -1 "$WP_DIR"/*.{png,jpg,jpeg,webp} | xargs -n 1 basename | walker --dmenu)
+FILES=()
+for dir in "${WP_DIRS[@]}"; do
+    if [ -d "$dir" ]; then
+        while IFS= read -r file; do
+            [ -n "$file" ] && FILES+=("$file")
+        done < <(find "$dir" -maxdepth 1 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \))
+    fi
+done
 
-if [ -n "$SELECTED" ]; then
-    # Aplicar o wallpaper usando o waypaper para persistência
-    waypaper --wallpaper "$WP_DIR/$SELECTED"
+if [ ${#FILES[@]} -eq 0 ]; then
+    notify-send -u normal "Wallpaper Picker" "Nenhum wallpaper encontrado em ~/Pictures/Wallpapers ou ~/Downloads."
+    exit 0
+fi
+
+declare -A FILE_MAP
+MENU_ITEMS=""
+for f in "${FILES[@]}"; do
+    base=$(basename "$f")
+    FILE_MAP["$base"]="$f"
+    MENU_ITEMS+="$base"$'\n'
+done
+
+SELECTED=$(echo -n "$MENU_ITEMS" | sed '/^$/d' | sort -u | walker --dmenu)
+
+if [ -n "$SELECTED" ] && [ -n "${FILE_MAP[$SELECTED]}" ]; then
+    TARGET_PATH="${FILE_MAP[$SELECTED]}"
+    waypaper --wallpaper "$TARGET_PATH"
     notify-send -u low "Wallpaper Aplicado" "O wallpaper foi alterado para: $SELECTED"
 fi

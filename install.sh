@@ -39,7 +39,7 @@ PACKAGES=(
     sddm-theme-tokyo-night-git
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
-    elephant-bin
+    elephant-all-bin
     spotify-tray-wayland-bin
 )
 
